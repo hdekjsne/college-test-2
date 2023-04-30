@@ -37,9 +37,15 @@ const processedData = content
 
 const creatureTypes = processedData.reduce((acc) => acc + 1, 0);
 
+const sortedByPower = processedData.sort((creature1, creature2) => {
+  if (creature1[i.force] > creature2[i.force]) return -1;
+  if (creature1[i.force] === creature2[i.force]) return 0;
+  return 1;
+});
+
 const result = `Total amount of creature types: ${creatureTypes}\n
-To hire 10 most powerful creatures () would cost you: \n
-To hire 20 second powerful creatures () would cost you: `;
+To hire 10 most powerful creatures (${sortedByPower[0][i.name]}) would cost you: ${sortedByPower[0][i.price] * 10}\n
+To hire 20 second powerful creatures (${sortedByPower[1][i.name]}) would cost you: ${sortedByPower[1][i.price] * 20}`;
 
 console.log(result);
 // END
