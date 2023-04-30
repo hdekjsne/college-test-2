@@ -25,6 +25,19 @@ const i = {
   price: 6,
 };
 
+// utils
+function sort(arr, criteria) {
+  return arr.sort((a, b) => {
+    const c1 = Number(a[i[criteria]]);
+    const c2 = Number(b[i[criteria]]);
+    if (c1 > c2) return -1;
+    if (c1 === c2) return 0;
+    return 1;  
+  });
+}
+//
+
+
 const processedData = content
   .split('\r\n')
   .map((line) => line
@@ -37,21 +50,9 @@ const processedData = content
 
 const creatureTypes = processedData.reduce((acc) => acc + 1, 0);
 
-const sortedByPower = processedData.sort((creature1, creature2) => {
-  const force1 = Number(creature1[i.force]);
-  const force2 = Number(creature2[i.force]);
-  if (force1 > force2) return -1;
-  if (force1 === force2) return 0;
-  return 1;
-});
+const sortedByPower = sort(processedData, 'force');
 
-const sortedByWeight = processedData.sort((creature1, creature2) => {
-  const weight1 = Number(creature1[i.weight]);
-  const weight2 = Number(creature2[i.weight]);
-  if (weight1 > weight2) return -1;
-  if (weight1 === weight2) return 0;
-  return 1;
-});
+const sortedByWeight = sort(processedData, 'weight');
 const heavyPricePerSquade = sortedByWeight[0][i.price] * sortedByWeight[0][i.amount];
 const thinPricePerSquade = sortedByWeight[sortedByWeight.length - 1][i.price] * sortedByWeight[sortedByWeight.length - 1][i.amount];
 
