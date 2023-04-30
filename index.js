@@ -24,5 +24,9 @@ const processedData = content
     .filter((word) => word != 0))
   .filter((line) => line.length > 0)
   .filter((line, index) => index !== 0);
-console.log(processedData);
+
+const creatureTypes = processedData.reduce((acc) => acc + 1, 0);
+
+const result = `Total amount of creature types: ${creatureTypes}`;
+console.log(result);
 // END
