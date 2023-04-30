@@ -15,5 +15,14 @@ const content = fs.readFileSync(path.join(
 ), 'utf-8');
 
 // BEGIN
-console.log(content)
+const processedData = content
+  .split('\r\n')
+  .map((line) => line
+    .split('|')
+    .map((word) => word.trim())
+    .filter((word) => !word.includes('-'))
+    .filter((word) => word != 0))
+  .filter((line) => line.length > 0)
+  .filter((line, index) => index !== 0);
+console.log(processedData);
 // END
