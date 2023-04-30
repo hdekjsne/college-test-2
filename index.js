@@ -66,6 +66,22 @@ processedData.map((creature) => {
 });
 const sortedByProfit = sort(processedData, 'profit');
 
+const armies = processedData.reduce((acc, creature) => {
+  let wallet = 10000;
+  let units = 0;
+  while (wallet >= 0) {
+    units++;
+    wallet -= creature[i.price];
+  }
+  acc.push([creature[i.name], units, creature[i.force] * units]);
+  return acc;
+}, []);
+const sortedArmies = armies.sort((army1, army2) => {
+  if (army1[2] > army2[2]) return -1;
+  if (army1[2] === army2[2]) return 0;
+  return 1;
+});
+
 const result = `Total amount of creature types: ${creatureTypes}\n
 \n
 To hire 10 most powerful creatures (${sortedByPower[0][i.name]}) would cost you: ${sortedByPower[0][i.price] * 10}\n
@@ -76,7 +92,9 @@ To hire a squade of them would cost you: ${heavyPricePerSquade}\n
 The thinnest unit is ${sortedByWeight[sortedByWeight.length - 1][i.name]}\n
 To hire a squade of them would cost you: ${thinPricePerSquade}\n
 \n
-The most unprofitable unit is ${sortedByProfit[0][i.name]}, the most profitable one - ${sortedByProfit[sortedByProfit.length - 1][i.name]}`;
+The most unprofitable unit is ${sortedByProfit[0][i.name]}, the most profitable one - ${sortedByProfit[sortedByProfit.length - 1][i.name]}\n
+\n
+With 10000 of money the best choice for you would be an army of ${sortedArmies[0][0]} with ${sortedArmies[0][1]} units in it`;
 
 console.log(result);
 // END
