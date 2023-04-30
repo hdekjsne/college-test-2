@@ -27,7 +27,11 @@ const i = {
 
 // utils
 function sort(arr, criteria) {
-  return arr.sort((a, b) => {
+  const arr2 = arr.reduce((acc, value) => {
+    acc.push(value);
+    return acc;
+  }, []);
+  return arr2.sort((a, b) => {
     const c1 = Number(a[i[criteria]]);
     const c2 = Number(b[i[criteria]]);
     if (c1 > c2) return -1;
@@ -36,7 +40,6 @@ function sort(arr, criteria) {
   });
 }
 //
-
 
 const processedData = content
   .split('\r\n')
