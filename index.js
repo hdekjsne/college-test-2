@@ -57,8 +57,8 @@ const creatureTypes = processedData.reduce((acc) => acc + 1, 0);
 const sortedByPower = sort(processedData, 'force');
 
 const sortedByWeight = sort(processedData, 'weight');
-const heavyPricePerSquade = sortedByWeight[0][i.price] * sortedByWeight[0][i.amount];
-const thinPricePerSquade = sortedByWeight[sortedByWeight.length - 1][i.price] * sortedByWeight[sortedByWeight.length - 1][i.amount];
+const heavyPricePerSquad = sortedByWeight[0][i.price] * sortedByWeight[0][i.amount];
+const thinPricePerSquad = sortedByWeight[sortedByWeight.length - 1][i.price] * sortedByWeight[sortedByWeight.length - 1][i.amount];
 
 // profit here is a price per one point of force
 processedData.map((creature) => {
@@ -88,9 +88,9 @@ To hire 10 most powerful creatures (${sortedByPower[0][i.name]}) would cost you:
 To hire 20 second powerful creatures (${sortedByPower[1][i.name]}) would cost you: ${sortedByPower[1][i.price] * 20}\n
 \n
 The most heavyweight unit is ${sortedByWeight[0][i.name]}\n
-To hire a squade of them would cost you: ${heavyPricePerSquade}\n
+To hire a squad of them would cost you: ${heavyPricePerSquad}\n
 The thinnest unit is ${sortedByWeight[sortedByWeight.length - 1][i.name]}\n
-To hire a squade of them would cost you: ${thinPricePerSquade}\n
+To hire a squad of them would cost you: ${thinPricePerSquad}\n
 \n
 The most unprofitable unit is ${sortedByProfit[0][i.name]}, the most profitable one - ${sortedByProfit[sortedByProfit.length - 1][i.name]}\n
 \n
