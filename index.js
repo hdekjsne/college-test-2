@@ -52,16 +52,18 @@ const sortedByWeight = processedData.sort((creature1, creature2) => {
   if (weight1 === weight2) return 0;
   return 1;
 });
+const heavyPricePerSquade = sortedByWeight[0][i.price] * sortedByWeight[0][i.amount];
+const thinPricePerSquade = sortedByWeight[sortedByWeight.length - 1][i.price] * sortedByWeight[sortedByWeight.length - 1][i.amount];
 
 const result = `Total amount of creature types: ${creatureTypes}\n
 \n
 To hire 10 most powerful creatures (${sortedByPower[0][i.name]}) would cost you: ${sortedByPower[0][i.price] * 10}\n
 To hire 20 second powerful creatures (${sortedByPower[1][i.name]}) would cost you: ${sortedByPower[1][i.price] * 20}\n
 \n
-The most heavyweight unit is \n
-To hire a squade of them would cost you: \n
-The thinnest unit is \n
-To hire a squade of them would cost you: `;
+The most heavyweight unit is ${sortedByWeight[0][i.name]}\n
+To hire a squade of them would cost you: ${heavyPricePerSquade}\n
+The thinnest unit is ${sortedByWeight[sortedByWeight.length - 1][i.name]}\n
+To hire a squade of them would cost you: ${thinPricePerSquade}`;
 
 console.log(result);
 // END
