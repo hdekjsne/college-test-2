@@ -23,6 +23,7 @@ const i = {
   height: 4,
   weight: 5,
   price: 6,
+  profit: 7,
 };
 
 // utils
@@ -59,6 +60,12 @@ const sortedByWeight = sort(processedData, 'weight');
 const heavyPricePerSquade = sortedByWeight[0][i.price] * sortedByWeight[0][i.amount];
 const thinPricePerSquade = sortedByWeight[sortedByWeight.length - 1][i.price] * sortedByWeight[sortedByWeight.length - 1][i.amount];
 
+// profit here is a price per one point of force
+processedData.map((creature) => {
+  creature.push(Math.round(creature[i.price] / creature[i.force]));
+});
+const sortedByProfit = sort(processedData, 'profit');
+
 const result = `Total amount of creature types: ${creatureTypes}\n
 \n
 To hire 10 most powerful creatures (${sortedByPower[0][i.name]}) would cost you: ${sortedByPower[0][i.price] * 10}\n
@@ -67,7 +74,9 @@ To hire 20 second powerful creatures (${sortedByPower[1][i.name]}) would cost yo
 The most heavyweight unit is ${sortedByWeight[0][i.name]}\n
 To hire a squade of them would cost you: ${heavyPricePerSquade}\n
 The thinnest unit is ${sortedByWeight[sortedByWeight.length - 1][i.name]}\n
-To hire a squade of them would cost you: ${thinPricePerSquade}`;
+To hire a squade of them would cost you: ${thinPricePerSquade}\n
+\n
+The most unprofitable unit is ${sortedByProfit[0][i.name]}, the most profitable one - ${sortedByProfit[sortedByProfit.length - 1][i.name]}`;
 
 console.log(result);
 // END
